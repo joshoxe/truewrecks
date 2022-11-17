@@ -4,14 +4,22 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start" :"node main.js",
+    "start": "node main.js",
     "test": "test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^2.29.3",
+    "discord.js": "^14.6.0",
     "dotenv": "^16.0.3",
-    "mongodb": "^4.11.0"
+    "mongodb": "^4.11.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
   }
 }

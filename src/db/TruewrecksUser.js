@@ -6,7 +6,16 @@ module.exports = class TruewrecksUser extends BaseEntity {
     this.collectionName = 'truewrecks_user';
   }
 
-  findTruewrecksUserById(id) {
+  async findTruewrecksUserById(id) {
     return this.findById(this.collectionName, id);
+  }
+
+  async createTruewrecksUser(user) {
+    return this.insertElement(this.collectionName, user);
+  }
+
+  async addTrueCoins(id, coins) {
+    const user = await this.findTruewrecksUserById(id);
+    return this.updateById(this.collectionName, id, { truecoins: user.truecoins + coins });
   }
 };

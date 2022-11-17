@@ -19,13 +19,13 @@ module.exports = class BaseEntity {
   }
 
   async findById(collectionName, id) {
-    const query = { id: id };
+    const query = { id };
     return this.findElementByQuery(collectionName, query);
   }
 
   async updateById(collectionName, id, update) {
-    const query = { id: id };
-    return this.findandUpdateElementByQuery(collectionName, id, update);
+    const query = { id };
+    return this.findandUpdateElementByQuery(collectionName, query, { $set: update });
   }
 
   async insertElement(collectionName, document) {

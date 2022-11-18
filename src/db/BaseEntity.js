@@ -7,6 +7,7 @@ module.exports = class BaseEntity {
 
   async findElementByQuery(collectionName, query) {
     const client = new MongoClient(process.env.DATABASE_URI);
+    await client.connect();
     let result;
 
     try {
@@ -29,6 +30,7 @@ module.exports = class BaseEntity {
 
   async findandUpdateElementByQuery(collectionName, query, update) {
     const client = new MongoClient(process.env.DATABASE_URI);
+    await client.connect();
     let result;
 
     try {
@@ -56,6 +58,7 @@ module.exports = class BaseEntity {
 
   async insertElement(collectionName, document) {
     const client = new MongoClient(process.env.DATABASE_URI);
+    await client.connect();
     let result;
 
     try {
@@ -73,6 +76,7 @@ module.exports = class BaseEntity {
 
   async deleteElement(collectionName, document) {
     const client = new MongoClient(process.env.DATABASE_URI);
+    await client.connect();
     let result;
 
     try {

@@ -3,19 +3,41 @@ const { MongoClient } = require('mongodb');
 module.exports = class BaseEntity {
   constructor() {
     this.database = 'truewrecks';
-    this.client = new MongoClient(process.env.DATABASE_URI);
   }
 
   async findElementByQuery(collectionName, query) {
-    const db = await this.client.db(this.database);
-    const collection = db.collection(collectionName);
-    return collection.findOne(query, {}).then(() => db.close());
+    const client = new MongoClient(process.env.DATABASE_URI);
+    let result;
+
+    try {
+      const db = await client.db(this.database);
+      const collection = db.collection(collectionName);
+      result = await collection.findOne(query, {});
+      return result;
+    } catch (e) {
+      console.error(e);
+    } finally {
+      await client.close();
+    }
+
+    return result;
   }
 
   async findandUpdateElementByQuery(collectionName, query, update) {
-    const db = await this.client.db(this.database);
-    const collection = db.collection(collectionName);
-    return collection.findOneAndUpdate(query, update, {}).then(() => db.close());
+    const client = new MongoClient(process.env.DATABASE_URI);
+    let result;
+
+    try {
+      const db = await client.db(this.database);
+      const collection = db.collection(collectionName);
+      result = await collection.findOneAndUpdate(query, update, {});
+    } catch (e) {
+      console.error(e);
+    } finally {
+      await client.close();
+    }
+
+    return result;
   }
 
   async findById(collectionName, id) {
@@ -29,14 +51,36 @@ module.exports = class BaseEntity {
   }
 
   async insertElement(collectionName, document) {
-    const db = await this.client.db(this.database);
-    const collection = db.collection(collectionName);
-    return collection.insertOne(document, {}).then(() => db.close());
+    const client = new MongoClient(process.env.DATABASE_URI);
+    let result;
+
+    try {
+      const db = await client.db(this.database);
+      const collection = db.collection(collectionName);
+      result = await collection.insertOne(document, {});
+    } catch (e) {
+      console.error(e);
+    } finally {
+      await client.close();
+    }
+
+    return result;
   }
 
   async deleteElement(collectionName, document) {
-    const db = await this.client.db(this.database);
-    const collection = db.collection(collectionName);
-    return collection.deleteOne(document, {}).then(() => db.close());
+    const client = new MongoClient(process.env.DATABASE_URI);
+    let result;
+
+    try {
+      const db = await this.client.db(this.database);
+      const collection = db.collection(collectionName);
+      result = await collection.deleteOne(document, {});
+    } catch (e) {
+      console.error(e);
+    } finally {
+      await client.close();
+    }
+
+    return result;
   }
 };

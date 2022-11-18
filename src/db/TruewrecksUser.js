@@ -8,7 +8,6 @@ module.exports = class TruewrecksUser extends BaseEntity {
 
   async findTruewrecksUserById(id) {
     const user = await this.findById(this.collectionName, id);
-    console.log(user);
 
     if (user === null) {
       throw new Error(`Couldn't find user with id ${id}`);

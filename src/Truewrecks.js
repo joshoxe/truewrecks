@@ -66,7 +66,7 @@ module.exports = class Truewrecks {
     const command = this.commands.find((c) => c.name === interaction.commandName);
 
     if (command) {
-      await command.function(interaction, user, interaction.member.nickname);
+      await command.function(interaction, user, interaction.member.nickname ?? user.user.username);
     }
 
     // Add coins for message

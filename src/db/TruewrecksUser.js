@@ -16,6 +16,9 @@ module.exports = class TruewrecksUser extends BaseEntity {
 
   async addTrueCoins(id, coins) {
     const user = await this.findTruewrecksUserById(id);
+    if (user === null) {
+      throw new Error(`Couldn't find user with id ${id}`);
+    }
     return this.updateById(this.collectionName, id, { truecoins: user.truecoins + coins });
   }
 };

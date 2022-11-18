@@ -9,13 +9,13 @@ module.exports = class BaseEntity {
   async findElementByQuery(collectionName, query) {
     const db = await this.client.db(this.database);
     const collection = db.collection(collectionName);
-    return collection.findOne(query, {});
+    return collection.findOne(query, {}).then(() => db.close());
   }
 
   async findandUpdateElementByQuery(collectionName, query, update) {
     const db = await this.client.db(this.database);
     const collection = db.collection(collectionName);
-    return collection.findOneAndUpdate(query, update, {});
+    return collection.findOneAndUpdate(query, update, {}).then(() => db.close());
   }
 
   async findById(collectionName, id) {
@@ -31,12 +31,12 @@ module.exports = class BaseEntity {
   async insertElement(collectionName, document) {
     const db = await this.client.db(this.database);
     const collection = db.collection(collectionName);
-    return collection.insertOne(document, {});
+    return collection.insertOne(document, {}).then(() => db.close());
   }
 
   async deleteElement(collectionName, document) {
     const db = await this.client.db(this.database);
     const collection = db.collection(collectionName);
-    return collection.deleteOne(document, {});
+    return collection.deleteOne(document, {}).then(() => db.close());
   }
 };

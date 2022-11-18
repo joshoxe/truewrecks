@@ -78,7 +78,7 @@ module.exports = class Truewrecks {
     if (message.author.bot || this.cooldown.hasCooldown(message.author.id)) return;
 
     const user = new User(message.author);
-    user.findOrCreateUser();
+    await user.findOrCreateUser();
 
     // Add coins for message
     await user.addTruecoins(getCoinPay());

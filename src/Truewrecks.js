@@ -58,12 +58,19 @@ module.exports = class Truewrecks {
     const user = new User(interaction.user);
     user.findOrCreateUser();
 
+    if (user.user.username === 'Omri') {
+      await interaction.reply('27% haste omri?');
+      return;
+    }
+
     const command = this.commands.find((c) => c.name === interaction.commandName);
 
     if (command) {
       await command.function(interaction, user, interaction.member.nickname);
     }
 
+    // Add coins for message
+    await user.addTruecoins(getCoinPay());
     this.cooldown.addCooldown(interaction.user.id);
   }
 
@@ -72,11 +79,6 @@ module.exports = class Truewrecks {
 
     const user = new User(message.author);
     user.findOrCreateUser();
-
-    if (user.username === 'Omri') {
-      await message.reply('27% haste omri?');
-      return;
-    }
 
     // Add coins for message
     await user.addTruecoins(getCoinPay());

@@ -10,8 +10,11 @@ module.exports = class BaseEntity {
     let result;
 
     try {
+      console.log(query);
       const db = await client.db(this.database);
+      console.log(db);
       const collection = db.collection(collectionName);
+      console.log(collection);
       result = await collection.findOne(query, {});
       console.log('RESULT', result);
       return result;

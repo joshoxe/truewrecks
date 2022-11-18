@@ -13,6 +13,7 @@ module.exports = class BaseEntity {
       const db = await client.db(this.database);
       const collection = db.collection(collectionName);
       result = await collection.findOne(query, {});
+      console.log('RESULT', result);
       return result;
     } catch (e) {
       console.error(e);

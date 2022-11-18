@@ -56,7 +56,7 @@ module.exports = class Truewrecks {
     }
 
     const user = new User(interaction.user);
-    user.findOrCreateUser();
+    await user.findOrCreateUser();
 
     if (user.user.username === 'Omri') {
       await interaction.reply('27% haste omri?');
